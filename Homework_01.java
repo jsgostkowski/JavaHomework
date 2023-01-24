@@ -1,20 +1,26 @@
 package Exercises;
 
+import java.lang.reflect.Array;
+import java.util.*;
+
 public class Homework_01 {
     public static void main(String[] args) {
         addString("kuba");
         System.out.println(addParams(1, 2));
         checkLength("1");
         System.out.println(compareStringLength("asd", "b1234"));
-        System.out.println(checkBiggerParam(0.2,1.2));
-        System.out.println(sumAndMultiplyParam(2,2,2));
+        System.out.println(checkBiggerParam(0.2, 1.2));
+        System.out.println(sumAndMultiplyParam(2, 2, 2));
         System.out.println(checkEven(8));
-        System.out.println(sumParamsAndCheck(10,2));
+        System.out.println(sumParamsAndCheck(10, 2));
         System.out.println(modifyString("zy"));
         System.out.println(checkString("xxbadxx"));
-        System.out.println(countChars("kkkkkubaa",'k'));
+        System.out.println(countChars("kkkkkubaa", 'k'));
         System.out.println(count(5));
-        System.out.println(countSqrt(3,3));
+        System.out.println(countSqrt(3, 3));
+
+        //LISTS
+        System.out.println(generaterateList());
     }
 
     // Napisz metode, ktora dodaje do Stringa podanego jako parametr napis "dzien dobry"
@@ -54,29 +60,33 @@ public class Homework_01 {
             return b;
         }
     }
+
     // Napisz metode ktora jako argument (parametr) przyjmuje
     // 3 zmienne typu int i liczy sume pierwszej i drugiej i mnozy przez trzecia
-    public static int sumAndMultiplyParam (int a, int b, int c){
-        return (a+b) * c;
+    public static int sumAndMultiplyParam(int a, int b, int c) {
+        return (a + b) * c;
     }
+
     // Napisz metode ktora przyjmuje jako argument liczbe i sprawdza czy jest to liczba parzysta
-    public static boolean checkEven (double a){
-        if(a % 2 == 0){
+    public static boolean checkEven(double a) {
+        if (a % 2 == 0) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }
+
     // Napisz metode ktora zwraca sume dwoch liczb ale z uwaga ze jesli ktoras z podanych liczb jest z przedzialu [13,19]
     // to zwrocona wartosc to zawsze 19
-    public static int sumParamsAndCheck (int a, int b){
-        int sum = a+ b;
-        if(sum >= 13 && sum<=19){
+    public static int sumParamsAndCheck(int a, int b) {
+        int sum = a + b;
+        if (sum >= 13 && sum <= 19) {
             return 19;
-        }else{
+        } else {
             return sum;
         }
     }
+
     //Napisz metode ktora przyjmuje jako parametr Stringa, jesli String zaczyna sie na z zwroc napis zzz, jesli konczy sie na y zwroc napis yyy
     // jesli zaczyna sie na z i konczy na y zwroc zzyy, w kazdym innym przypadku zwroc stringa niezmienionego
     // metoda startsWith() i endsWith() <- sprawdzenie czy string konczy/zaczyna sie na dany literał łancuchowy
@@ -91,6 +101,7 @@ public class Homework_01 {
             return input;
         }
     }
+
     //Sprawdz czy podany String jako parametr zaczynajac od 0 lub 1 indeksu ma w sobie slowo bad
     //xbadxxx - true
     //badxxx - true
@@ -102,24 +113,27 @@ public class Homework_01 {
             return false;
         }
     }
+
     //Napisz metode ktora liczy ile razy podany znak wystepuje w podanym Stringu
-    public static int countChars (String input, char character){
+    public static int countChars(String input, char character) {
         int counter = 0;
-        for (int i =0; i<input.length();i++){
-            if(input.charAt(i) == character){
+        for (int i = 0; i < input.length(); i++) {
+            if (input.charAt(i) == character) {
                 counter++;
             }
         }
         return counter;
     }
-   // Napisz metodę obliczająca silnię z podanej liczby
-    public static int count(int a){
+
+    // Napisz metodę obliczająca silnię z podanej liczby
+    public static int count(int a) {
         int iloczyn = 1;
-        for (int i = 1; i<=a; i++){
-            iloczyn *=i;
+        for (int i = 1; i <= a; i++) {
+            iloczyn *= i;
         }
         return iloczyn;
     }
+
     // napisz metoda ktora sprawdza czy podana liczba dwucyfrowa ma wieksza cyfre
     // jednosci od cyfry dziesiatek
 //    public boolean checkFirstNumber(int param){
@@ -133,7 +147,7 @@ public class Homework_01 {
     // dla argumentow 3^4 ma obliczyc 3*3*3*3 = 81
     // uwzglednic ze a^0 = 1
     // uwzglednic ze a^-b = 1/(a^b)
-    public static double countSqrt(int a, int b){
+    public static double countSqrt(int a, int b) {
         if (b == 0) {
             return 1;
         } else if (b < 0) {
@@ -144,6 +158,20 @@ public class Homework_01 {
             result *= a;
         }
         return result;
+    }
+
+    // Napisz metode ktora uzupelnia losowa iloscia (od 2-8) liczb losowych z przedziaku 1-10,
+    // wrzucmy te liczby do nowej listy posortujmy ja odwrotnie i zwracamy ta liste
+    public static ArrayList<Integer> generaterateList() {
+        ArrayList<Integer> randomArray = new ArrayList<>();
+        Random r = new Random();
+        int sizeArray = r.nextInt(7)+2; //r.nextInt(7) generuje nam liczby od 0-6 dodając 2 mamy od 2 do 8
+        for(int i =0;i<sizeArray; i++){
+            randomArray.add(r.nextInt(10)+1); //tak samo jak na gorze 0-9 dodajac jeden mamy 1-10
+        }
+        System.out.println(randomArray + " non sorted");
+        Collections.sort(randomArray, Collections.reverseOrder());
+        return randomArray;
     }
 
 
