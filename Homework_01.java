@@ -21,6 +21,31 @@ public class Homework_01 {
 
         //LISTS
         System.out.println(generaterateList());
+        List<Integer> list = new ArrayList<>();
+
+        list.add(2);
+        list.add(4);
+        list.add(8);
+        list.add(19);
+        list.add(22);
+        System.out.println(checkList(list));
+        List<String> names = new ArrayList<>();
+        names.add("Jakub");
+        names.add("Jakub");
+        names.add("Jakub");
+        names.add("Fejk");
+        names.add("Jakub");
+        names.add("Jan");
+
+        System.out.println(countNames(names,"Jakub"));
+
+        System.out.println(checkPAram(names,"e"));
+        List<String> list1 = Arrays.asList("a", "b", "c", "d");
+        List<String> list2 = Arrays.asList("b", "c", "e", "f");
+        System.out.println(checkCommonElements(list1,list2));
+
+        List<Integer> listInt = Arrays.asList(1,2,3,4,5);
+        System.out.println(checkDifference(listInt));
     }
 
     // Napisz metode, ktora dodaje do Stringa podanego jako parametr napis "dzien dobry"
@@ -165,14 +190,89 @@ public class Homework_01 {
     public static ArrayList<Integer> generaterateList() {
         ArrayList<Integer> randomArray = new ArrayList<>();
         Random r = new Random();
-        int sizeArray = r.nextInt(7)+2; //r.nextInt(7) generuje nam liczby od 0-6 dodając 2 mamy od 2 do 8
-        for(int i =0;i<sizeArray; i++){
-            randomArray.add(r.nextInt(10)+1); //tak samo jak na gorze 0-9 dodajac jeden mamy 1-10
+        int sizeArray = r.nextInt(7) + 2; //r.nextInt(7) generuje nam liczby od 0-6 dodając 2 mamy od 2 do 8
+        for (int i = 0; i < sizeArray; i++) {
+            randomArray.add(r.nextInt(10) + 1); //tak samo jak na gorze 0-9 dodajac jeden mamy 1-10
         }
         System.out.println(randomArray + " non sorted");
         Collections.sort(randomArray, Collections.reverseOrder());
         return randomArray;
     }
 
+    // Napisz metode ktora jako parametr przyjmuje liste intow i zwraca wszystkie liczby parzyste z tej listy
+    public static List<Integer> checkList(List<Integer> list) {
+        List<Integer> evenNumbers = new ArrayList<>();
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i) % 2 == 0) {
+                evenNumbers.add(list.get(i));
+            }
+        }
+        return evenNumbers;
+    }
+
+    // Wyswietl wszystkie imiona męskie które znajduja sie w liscie
+    public static List<String> mensName(List<String> names) {
+        List<String> name = new ArrayList<>();
+
+        return name;
+    }
+
+    public static int countNames(List<String> names, String param) {
+        int counter = 0;
+        for (int i = 0; i < names.size(); i++) {
+            if (names.get(i) == param) {
+                counter++;
+            }
+        }
+        return counter;
+    }
+    // Napisz metode ktora jako parametr przyjmuje Liste Stringow oraz znak. Zwroc
+    // liste zawierajaca wszystkie
+    // Stringi ktore zawieraja podana znak
+    // Lista: Ania Kasia Grzegorz Tomek Magda a znak to a, to lista zwracana powinna
+    // zawierac Ania Kasia Magda
+    public static List<String> checkPAram(List<String> names, String param){
+        List<String> checkParamInListNames = new ArrayList<>();
+        for (int i = 0; i<names.size();i++){
+            if(names.get(i).contains(param)){
+                checkParamInListNames.add(names.get(i));
+            }
+        }
+        return checkParamInListNames;
+    }
+    // Napisz metode ktora jako parametr przyjmuje 2 Listy Stringow i zwraca liste
+    // elementów wspolnych, ktore sa na obu listach
+    public static List<String> checkCommonElements(List<String> listA, List<String> listB){
+        List<String> checkCommons = new ArrayList<>();
+        for(int i = 0; i<listA.size(); i++){
+            for (int j=0; j<listB.size(); j++){
+                if(listA.get(i).equals(listB.get(j))){
+                    checkCommons.add(listA.get(i));
+                    break;
+                }
+            }
+        }
+        return checkCommons;
+    }
+    // Napisz metode ktora dla listy intów zwroci roznice pomiedzy jej najwiekszym a
+    // najmniejszym elementem
+    public static int checkDifference(List<Integer> numbers){
+//        List<Integer> check = new ArrayList<>();
+        int max=numbers.get(0);
+        int min=numbers.get(0);
+        //check max number
+        for(int i = 0; i<numbers.size();i++){
+            if(numbers.get(i) > max){
+                max = numbers.get(i);
+            }
+        }
+        for(int i = 0; i<numbers.size();i++){
+            if (numbers.get(i) < min){
+                min = numbers.get(i);
+            }
+        }
+
+        return max-min;
+    }
 
 }
