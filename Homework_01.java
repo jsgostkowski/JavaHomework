@@ -1,6 +1,5 @@
 package Exercises;
 
-import java.lang.reflect.Array;
 import java.util.*;
 
 public class Homework_01 {
@@ -37,15 +36,24 @@ public class Homework_01 {
         names.add("Jakub");
         names.add("Jan");
 
-        System.out.println(countNames(names,"Jakub"));
+        System.out.println(countNames(names, "Jakub"));
 
-        System.out.println(checkPAram(names,"e"));
+        System.out.println(checkPAram(names, "e"));
         List<String> list1 = Arrays.asList("a", "b", "c", "d");
         List<String> list2 = Arrays.asList("b", "c", "e", "f");
-        System.out.println(checkCommonElements(list1,list2));
+        System.out.println(checkCommonElements(list1, list2));
 
-        List<Integer> listInt = Arrays.asList(1,2,3,4,5);
+        List<Integer> listInt = Arrays.asList(1, 2, 3, 4, 5, 2, 3, 4);
         System.out.println(checkDifference(listInt));
+
+        System.out.println(checkLength(names, "Jakub"));
+
+        System.out.println(reverseList(listInt));
+        reversePartTwo(listInt);
+
+        checkNames(names);
+        countVowels(names);
+
     }
 
     // Napisz metode, ktora dodaje do Stringa podanego jako parametr napis "dzien dobry"
@@ -226,27 +234,29 @@ public class Homework_01 {
         }
         return counter;
     }
+
     // Napisz metode ktora jako parametr przyjmuje Liste Stringow oraz znak. Zwroc
     // liste zawierajaca wszystkie
     // Stringi ktore zawieraja podana znak
     // Lista: Ania Kasia Grzegorz Tomek Magda a znak to a, to lista zwracana powinna
     // zawierac Ania Kasia Magda
-    public static List<String> checkPAram(List<String> names, String param){
+    public static List<String> checkPAram(List<String> names, String param) {
         List<String> checkParamInListNames = new ArrayList<>();
-        for (int i = 0; i<names.size();i++){
-            if(names.get(i).contains(param)){
+        for (int i = 0; i < names.size(); i++) {
+            if (names.get(i).contains(param)) {
                 checkParamInListNames.add(names.get(i));
             }
         }
         return checkParamInListNames;
     }
+
     // Napisz metode ktora jako parametr przyjmuje 2 Listy Stringow i zwraca liste
     // elementów wspolnych, ktore sa na obu listach
-    public static List<String> checkCommonElements(List<String> listA, List<String> listB){
+    public static List<String> checkCommonElements(List<String> listA, List<String> listB) {
         List<String> checkCommons = new ArrayList<>();
-        for(int i = 0; i<listA.size(); i++){
-            for (int j=0; j<listB.size(); j++){
-                if(listA.get(i).equals(listB.get(j))){
+        for (int i = 0; i < listA.size(); i++) {
+            for (int j = 0; j < listB.size(); j++) {
+                if (listA.get(i).equals(listB.get(j))) {
                     checkCommons.add(listA.get(i));
                     break;
                 }
@@ -254,25 +264,113 @@ public class Homework_01 {
         }
         return checkCommons;
     }
+
     // Napisz metode ktora dla listy intów zwroci roznice pomiedzy jej najwiekszym a
     // najmniejszym elementem
-    public static int checkDifference(List<Integer> numbers){
+    public static int checkDifference(List<Integer> numbers) {
 //        List<Integer> check = new ArrayList<>();
-        int max=numbers.get(0);
-        int min=numbers.get(0);
+        int max = numbers.get(0);
+        int min = numbers.get(0);
         //check max number
-        for(int i = 0; i<numbers.size();i++){
-            if(numbers.get(i) > max){
+        for (int i = 0; i < numbers.size(); i++) {
+            if (numbers.get(i) > max) {
                 max = numbers.get(i);
             }
         }
-        for(int i = 0; i<numbers.size();i++){
-            if (numbers.get(i) < min){
+        for (int i = 0; i < numbers.size(); i++) {
+            if (numbers.get(i) < min) {
                 min = numbers.get(i);
             }
         }
 
-        return max-min;
+        return max - min;
     }
 
+    // Napisz metode ktora przyjmuje liste Stringow i zwraca listę (intow) indeksow
+    // wszystkich elementow na liscie, ktore sa takie same jak parametr metody
+    // np dla Listy Ania Krzys Ania Piotr Tomek Ania i imienia Ania
+    // output: to 0,2,5\
+    public static List<Integer> checkLength(List<String> names, String param) {
+        List<Integer> countIndex = new ArrayList<>();
+        for (int i = 0; i < names.size(); i++) {
+            if (names.get(i).equals(param)) {
+                countIndex.add(i);
+            }
+        }
+
+        return countIndex;
+    }
+
+    // Napisz metode ktora odwraca kolejnosc liczb w liscie ktora jest podana jako parametr
+    // nie mozna uzywac nic z Collections
+    public static List<Integer> reverseList(List<Integer> list) {
+        List<Integer> newList = new ArrayList<>();
+        for (int i = list.size() - 1; i >= 0; i--) {
+            newList.add(list.get(i));
+        }
+        return newList;
+    }
+
+    // Napisz metode ktora odwraca kolejnosc liczb w liscie ktora jest podana jako parametr
+    // metoda ma odwrocic liste, nie ma nic zwracac, nie mozna wykorzystywac innych list/tablic
+    // nie mozna uzywac nic z Collections
+    public static void reversePartTwo(List<Integer> list) {
+//        for (int i = list.size() - 1; i >= 0; i--) {
+//            System.out.print(list.get(i));
+//        }
+    }
+
+
+    // majac liste intow zwróc liste intow tych ktore te ktore koncza sie na cyfre
+    // podana jako porametr
+//    public static List<Integer> checkLastOfParam (List<Integer> list, int param){
+//        List<Integer> newList = new ArrayList<>();
+//        for(int i=0; i< list.size();i++){
+//            if(newList.get(i).)
+//        }
+//    }
+    // Wyświetl ile razy ktorekolwiek imie zostało powtórzone Np dla imion ania piotr ania tomek krzys tomek ania program
+    // powinien wypisac 3, bo byly 3 potworki
+
+    // Wyswietl ile razy we wszystkich imionach była użyta samogłoska
+    public static void countVowels(List<String> names) {
+        int count = 0;
+        for (String name : names) {
+            for (int i = 0; i < name.length(); i++) {
+                char c = name.charAt(i);
+                if (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u' || c == 'y') {
+                    count++;
+                }
+            }
+
+        }
+        System.out.println("Liczba samogłosek wynosi: " + count);
+
+    }
+
+    //Napisz metodę która wyswietli unikalne imiona
+    public static void checkNames(List<String> list) {
+
+        Set<String> uniqueNames = new HashSet<>(list);
+        for (String name : uniqueNames) {
+            System.out.println(name);
+        }
+    }
+
+    //Zwroc liste imion które sa dluzsze niz 5 znakow o parzystej dlugosci
+
+    //Zwroc liczbe słow ktore sa zlozone z samych whitespaców np spacji
+
+
+    //Napisz metode ktora przyjmuje jako parametr liste Stringow oraz liste intow (tej samej dlugosci obie listy)
+    //Metoda ma zwrocic liste Stringow z pirwszej listy ktorych dlugosc odpowiada liczbom na 2 liscie
+    // Ania Krzys Tomek Kasia Jan
+    // 4 2 5 8 3
+    //Ania Tomek Jan
+
+    // napisz metode ktora przyjmuje liste intow i zwraca z niej wszystkie liczby pierwsze
+
+
+    // Napisz metode ktora przyjmuje jako parametr liste tablic Stringow i oblicza
+    // sume dlugosci wszystkich Stringów
 }
