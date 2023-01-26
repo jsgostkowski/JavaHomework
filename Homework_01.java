@@ -29,7 +29,7 @@ public class Homework_01 {
         list.add(22);
         System.out.println(checkList(list));
         List<String> names = new ArrayList<>();
-        names.add("Jakub");
+        names.add("Jakubb");
         names.add("Jakub");
         names.add("Jakub");
         names.add("Fejk");
@@ -53,7 +53,16 @@ public class Homework_01 {
 
         checkNames(names);
         countVowels(names);
+        System.out.println(checkNamesLength(names));
+        List<Integer> len = new ArrayList<>();
+        len.add(6);
+        len.add(4);
+        len.add(4);
+        len.add(4);
+        len.add(4);
+        len.add(4);
 
+        System.out.println(getNamesByLength(names,len));
     }
 
     // Napisz metode, ktora dodaje do Stringa podanego jako parametr napis "dzien dobry"
@@ -324,13 +333,10 @@ public class Homework_01 {
     // majac liste intow zwróc liste intow tych ktore te ktore koncza sie na cyfre
     // podana jako porametr
 //    public static List<Integer> checkLastOfParam (List<Integer> list, int param){
-//        List<Integer> newList = new ArrayList<>();
-//        for(int i=0; i< list.size();i++){
-//            if(newList.get(i).)
 //        }
 //    }
-    // Wyświetl ile razy ktorekolwiek imie zostało powtórzone Np dla imion ania piotr ania tomek krzys tomek ania program
-    // powinien wypisac 3, bo byly 3 potworki
+        // Wyświetl ile razy ktorekolwiek imie zostało powtórzone Np dla imion ania piotr ania tomek krzys tomek ania program
+        // powinien wypisac 3, bo byly 3 potworki
 
     // Wyswietl ile razy we wszystkich imionach była użyta samogłoska
     public static void countVowels(List<String> names) {
@@ -358,6 +364,15 @@ public class Homework_01 {
     }
 
     //Zwroc liste imion które sa dluzsze niz 5 znakow o parzystej dlugosci
+    public static List<String> checkNamesLength(List<String> names){
+        List<String> checkLen = new ArrayList<>();
+        for(int i =0;i<names.size();i++){
+            if(names.get(i).length() > 5 && names.get(i).length() % 2 == 0){
+                checkLen.add(names.get(i));
+            }
+        }
+        return checkLen;
+    }
 
     //Zwroc liczbe słow ktore sa zlozone z samych whitespaców np spacji
 
@@ -367,8 +382,18 @@ public class Homework_01 {
     // Ania Krzys Tomek Kasia Jan
     // 4 2 5 8 3
     //Ania Tomek Jan
+    public static List<String> getNamesByLength(List<String> names, List<Integer> lengths) {
+        List<String> result = new ArrayList<>();
+        for (int i = 0; i < names.size(); i++) {
+            if (names.get(i).length() == lengths.get(i)) {
+                result.add(names.get(i));
+            }
+        }
+        return result;
+    }
 
     // napisz metode ktora przyjmuje liste intow i zwraca z niej wszystkie liczby pierwsze
+
 
 
     // Napisz metode ktora przyjmuje jako parametr liste tablic Stringow i oblicza
